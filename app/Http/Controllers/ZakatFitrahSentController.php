@@ -149,7 +149,7 @@ class ZakatFitrahSentController extends Controller
             $data = $validated->messages();
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 500);
         } else {
-            $zakatFitrahGet = ModelZakatFitrahSent::where('id', $id)->first();
+            $zakatFitrahGet = ModelZakatFitrahSent::where('id', $id)->where('year_hijriah', $request->year_hijriah)->first();
             if ($zakatFitrahGet->is_zakat_sent == false && $request->is_zakat_sent == true || $zakatFitrahGet->amount_sent != $request->amount_sent) {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
@@ -160,7 +160,7 @@ class ZakatFitrahSentController extends Controller
                     'is_zakat_sent' => $request->is_zakat_sent,
                     'id_user_amount_sent_updated' => $request->id_user,
                 );
-                $zakatFitrahUpdate = ModelZakatFitrahSent::where('id', $id)->update($data);
+                $zakatFitrahUpdate = ModelZakatFitrahSent::where('id', $zakatFitrahGet->id)->update($data);
             } else {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
@@ -168,7 +168,7 @@ class ZakatFitrahSentController extends Controller
                     'notes' => $request->notes,
                     'is_zakat_sent' => $request->is_zakat_sent
                 );
-                $zakatFitrahUpdate = ModelZakatFitrahSent::where('id', $id)->update($data);
+                $zakatFitrahUpdate = ModelZakatFitrahSent::where('id', $zakatFitrahGet->id)->update($data);
             }
             if ($zakatFitrahUpdate) {
                 $status = 'Success';

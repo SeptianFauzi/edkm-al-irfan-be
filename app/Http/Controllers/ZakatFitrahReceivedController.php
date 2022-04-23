@@ -140,14 +140,13 @@ class ZakatFitrahReceivedController extends Controller
             // 'is_zakat_received' => 'required|boolean'
         ]);
 
-        Log::info($request);
         if ($validated->fails()) {
             $status = 'Failed';
             $message = 'Validation Error';
             $data = $validated->messages();
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 500);
         } else {
-            $zakatFitrahGet = ModelZakatFitrah::where('id_peserta', $id)->first();
+            $zakatFitrahGet = ModelZakatFitrah::where('id', $id)->where('year_hijriah', $request->year_hijriah)->first();
             if ($zakatFitrahGet->is_zakat_received == false && $request->is_zakat_received == true || $zakatFitrahGet->amount_received != $request->amount_received) {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
@@ -158,7 +157,7 @@ class ZakatFitrahReceivedController extends Controller
                     'is_zakat_received' => $request->is_zakat_received,
                     'id_user_amount_received_updated' => $request->id_user
                 );
-                $zakatFitrahUpdate = ModelZakatFitrah::where('id', $id)->update($data);
+                $zakatFitrahUpdate = ModelZakatFitrah::where('id', $zakatFitrahGet->id)->update($data);
             } else {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
@@ -166,13 +165,12 @@ class ZakatFitrahReceivedController extends Controller
                     'notes' => $request->notes,
                     'is_zakat_received' => $request->is_zakat_received
                 );
-                $zakatFitrahUpdate = ModelZakatFitrah::where('id', $id)->update($data);
+                $zakatFitrahUpdate = ModelZakatFitrah::where('id', $zakatFitrahGet->id)->update($data);
             }
             if ($zakatFitrahUpdate) {
                 $status = 'Success';
                 $message = 'Data Updated';
                 $data = $data;
-                Log::info($data);
                 return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 200);
             } else {
                 $status = 'Failed';

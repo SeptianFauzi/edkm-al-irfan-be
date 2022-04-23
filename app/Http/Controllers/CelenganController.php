@@ -64,7 +64,6 @@ class CelenganController extends Controller
             $id_peserta = $request->id_peserta;
             $dataAllmoney = [];
             foreach ($id_peserta as $key => $id_peserta) {
-
                 $data = array(
                     'id_user' => $request->id_user,
                     'id_peserta' => $id_peserta,
@@ -145,7 +144,7 @@ class CelenganController extends Controller
             $data = $validated->messages();
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 500);
         } else {
-            $celenganGet = Celengan::where('id', $id)->first();
+            $celenganGet = Celengan::where('id', $id)->where('year_hijriah', $request->year_hijriah)->first();
             if (($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount) && ($celenganGet->is_money_box_sent != $request->is_money_box_sent)) {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
@@ -187,7 +186,7 @@ class CelenganController extends Controller
                     'is_money_box_sent' => $request->is_money_box_sent
                 );
             }
-            $celenganUpdate = Celengan::where('id', $id)->update($data);
+            $celenganUpdate = Celengan::where('id', $celenganGet->id)->update($data);
             if ($celenganUpdate) {
                 $status = 'Success';
                 $message = 'Data Updated';

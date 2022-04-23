@@ -78,6 +78,7 @@ class PesertaModelController extends Controller
                 'service_qurban_received' => $request->service_qurban_received,
                 'url_qrcode' => $request->url_qrcode,
                 'notes' => $request->notes,
+                'status' => $request->status,
                 'phone' => $request->phone,
             );
             $pesertaSave = PesertaModel::create($data);
@@ -163,6 +164,7 @@ class PesertaModelController extends Controller
                 'service_qurban_received' => $request->service_qurban_received,
                 'url_qrcode' => $request->url_qrcode,
                 'notes' => $request->notes,
+                'status' => $request->status,
                 'phone' => $request->phone,
             );
             $pesertaUpdate = PesertaModel::where('id', $id)->update($data);

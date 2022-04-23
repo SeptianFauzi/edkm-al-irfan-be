@@ -152,7 +152,7 @@ class QurbanSentController extends Controller
             $data = $validated->messages();
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 500);
         } else {
-            $qurbanSentGet = ModelQurbanSent::where('id', $id)->first();
+            $qurbanSentGet = ModelQurbanSent::where('id', $id)->where('year_hijriah', $request->year_hijriah)->first();
             if ($qurbanSentGet->is_qurban_sent == false && $request->is_qurban_sent == true || $qurbanSentGet->amount_sent != $request->amount_sent) {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
@@ -165,7 +165,7 @@ class QurbanSentController extends Controller
                     'is_qurban_sent' => $request->is_qurban_sent,
                     'id_user_amount_sent_updated' => $request->id_user,
                 );
-                $qurbanSentUpdate = ModelQurbanSent::where('id', $id)->update($data);
+                $qurbanSentUpdate = ModelQurbanSent::where('id', $qurbanSentGet->id)->update($data);
             } else {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
@@ -175,7 +175,7 @@ class QurbanSentController extends Controller
                     'notes' => $request->notes,
                     'is_qurban_sent' => $request->is_qurban_sent
                 );
-                $qurbanSentUpdate = ModelQurbanSent::where('id', $id)->update($data);
+                $qurbanSentUpdate = ModelQurbanSent::where('id', $qurbanSentGet->id)->update($data);
             }
             if ($qurbanSentUpdate) {
                 $status = 'Success';
