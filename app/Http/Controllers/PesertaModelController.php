@@ -205,11 +205,26 @@ class PesertaModelController extends Controller
     }
     public function getpesertazakatfitrahsent(Request $request)
     {
+
         $peserta = PesertaModel::whereNotIn('id', ZakatFitrahSent::where('year_hijriah', $request->year_hijriah)->get('id_peserta')->toArray())->where('service_zakat_sent', true)->orderBy('id', 'asc')->get();
+
+        $data = [];
+        if ($peserta->count() > 0) {
+            foreach ($peserta as $key => $peserta) {
+                $dataPeserta = [
+                    'id' => $peserta->id,
+                    'name' => $peserta->name,
+                    'is_person' => $peserta->is_person,
+                    'service_zakat_sent' => $peserta->service_zakat_sent,
+                    'is_zakat_received' => !is_null(ZakatFitrahReceived::where('id_peserta', $peserta->id)->where('year_hijriah', $request->year_hijriah)->first()) ? ZakatFitrahReceived::where('id_peserta', $peserta->id)->where('year_hijriah', $request->year_hijriah)->first()->is_zakat_received : false,
+                ];
+                array_push($data, $dataPeserta);
+            }
+        }
 
         if ($peserta) {
             $status = 'Success';
-            $data = $peserta;
+            $data = $data;
             $message = 'Success Get All Peserta';
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 200);
         } else {
@@ -222,7 +237,6 @@ class PesertaModelController extends Controller
     public function getpesertazakatfitrahreceived(Request $request)
     {
         $peserta = PesertaModel::whereNotIn('id', ZakatFitrahReceived::where('year_hijriah', $request->year_hijriah)->get('id_peserta')->toArray())->where('service_zakat_received', true)->orderBy('id', 'asc')->get();
-        // $peserta = DB::select("SELECT * FROM peserta WHERE id NOT IN (SELECT id_peserta FROM service_zakat_received WHERE year_hijriah = '".$request->year_hijriah."' AND deleted_at = null) AND service_zakat_received = 'true' AND deleted_at = null") ;
         if ($peserta) {
             $status = 'Success';
             $data = $peserta;
@@ -238,7 +252,6 @@ class PesertaModelController extends Controller
     public function getpesertacelengan(Request $request)
     {
         $peserta = PesertaModel::whereNotIn('id', Celengan::where('year_hijriah', $request->year_hijriah)->get('id_peserta')->toArray())->where('service_money', true)->orderBy('id', 'asc')->get();
-        // $peserta = DB::select("SELECT * FROM peserta WHERE id NOT IN (SELECT id_peserta FROM service_zakat_received WHERE year_hijriah = '".$request->year_hijriah."' AND deleted_at = null) AND service_zakat_received = 'true' AND deleted_at = null") ;
         if ($peserta) {
             $status = 'Success';
             $data = $peserta;
