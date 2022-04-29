@@ -37,7 +37,8 @@ return [
             'X-Auth-Token',
             'Origin',
             'Authorization',
-            'X-APITOKEN'
+            'X-APITOKEN',
+            'api_token'
         ],
 
         'expose_headers' => [
