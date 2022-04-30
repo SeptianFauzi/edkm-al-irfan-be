@@ -110,7 +110,7 @@ class ZakatFitrahSentController extends Controller
         } else {
             $status = 'Failed';
             $message = 'Failed Get Detail Peserta';
-            $data = [];
+            $data = false;
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 200);
         }
     }
