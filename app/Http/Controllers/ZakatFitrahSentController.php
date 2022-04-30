@@ -208,7 +208,7 @@ class ZakatFitrahSentController extends Controller
     public function getStatusPesertaZakatFitrahSent(Request $request)
     {
         $zakatFitrah = ModelZakatFitrahSent::where('is_zakat_sent', $request->is_zakat_sent)->where('year_hijriah', $request->year_hijriah)->with('id_user_service_zakat:id', 'id_user_zakat_sent_users:id,name', 'id_user_amount_sent_updated_users:id,name', 'id_peserta_peserta:id,name')->orderBy('id_peserta', 'asc')->get();
-        if ($zakatFitrah->count() > 0) {
+        if ($zakatFitrah) {
             $status = 'Success';
             $message = 'Success Get Data';
             $data = $zakatFitrah;
@@ -223,7 +223,7 @@ class ZakatFitrahSentController extends Controller
     public function getPesertaZakatFitrah(Request $request)
     {
         $zakatFitrah = ModelZakatFitrahSent::where('id_peserta', $request->id_peserta)->where('year_hijriah', $request->year_hijriah)->with('id_user_service_zakat:id,name', 'id_user_zakat_sent_users:id,name', 'id_user_amount_sent_updated_users:id,name', 'id_peserta_peserta:id,name')->orderBy('id_peserta', 'asc')->get();
-        if ($zakatFitrah->count() > 0) {
+        if ($zakatFitrah) {
             $status = 'Success';
             $message = 'Success Get Data';
             $data = $zakatFitrah;
