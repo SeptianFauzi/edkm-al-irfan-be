@@ -216,7 +216,7 @@ class ZakatFitrahSentController extends Controller
         } else {
             $status = 'Failed';
             $message = 'Success Get Data';
-            $data = $zakatFitrah;
+            $data = false;
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 200);
         }
     }
@@ -231,7 +231,7 @@ class ZakatFitrahSentController extends Controller
         } else {
             $status = 'Failed';
             $message = 'Success Get Data';
-            $data = $zakatFitrah;
+            $data = false;
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 200);
         }
     }
