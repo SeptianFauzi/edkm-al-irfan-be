@@ -1,0 +1,907 @@
+{
+	"info": {
+		"_postman_id": "8fe13c46-d706-4928-a82d-23930db0073f",
+		"name": "E_DKM_AL_IRFAN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET ALL Nasabah",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "api_token",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/peserta",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"peserta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL ZAKAT FITRah",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "api_token",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/pesertazakatfitrahreceived?year_hijriah=1442",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pesertazakatfitrahreceived"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Nasabah",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"fauzi\",\n\t\"is_person\" : true,\n\t\"service_money\" : true,\n\t\"service_zakat\" : true,\n\t\"service_qurban\" : true\n}"
+				},
+				"url": {
+					"raw": "localhost:8000/api/nasabah/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"nasabah",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login e-dkm",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Fauzis",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "septian@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Aceng",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "wildanzaenal782@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "passwords",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "panitia",
+							"type": "text"
+						},
+						{
+							"key": "note",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Nasabah",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "api_token",
+						"value": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Budi",
+							"type": "text"
+						},
+						{
+							"key": "is_person",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "service_zakat_sent",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "service_qurban_sent",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "service_money",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "service_zakat_received",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "service_qurban_received",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/peserta",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"peserta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All zakat fitrah",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/zakatfitrahreceived?year_hijriah=1442",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"zakatfitrahreceived"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Zakat Fitrah",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/zakatfitrah?year_hijriah=1442",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"zakatfitrah"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET NASABAH ZAKAT FITRAH",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/nasabahzakatfitrah?year_hijriah=1442",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"nasabahzakatfitrah"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ZAKAT FITRAH DETAIL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/zakatfitrahsent?year_hijriah=1442",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"zakatfitrahsent"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE ZAKAT FITRAH",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "api_token",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id_user\" : 1,\n\t\"year_hijriah\" : 1442,\n\t\"amount_sent\" : 0,\n\t\"amount_received\" : 3.75,\n\t\"is_zakat_sent\" : true,\n\t\"is_zakat_received\" : false\n}"
+				},
+				"url": {
+					"raw": "localhost:8000/api/zakatfitrah/30",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"zakatfitrah",
+						"30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ZAKAT FITRAH BY NASABAH & YEAR",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/nasabahzakatfitrah?year_hijriah=1442",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"nasabahzakatfitrah"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL Qurban Sent",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/qurbansent?year_hijriah=1442",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"qurbansent"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD Qurban Sent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id_user\" : 1,\n    \"year_hijriah\" : 1442,\n    \"peserta_qurban\" : [\n        {\n        \"id_peserta\" : 1,\n        \"amount_sent\" : 1,\n        \"amount_type\" : \"bungkus\"\n        },\n    {\n        \"id_peserta\" : 3,\n        \"amount_sent\" : 1,\n        \"amount_type\" : \"bungkus\"\n    }\n    ]\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/qurbansent",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"qurbansent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get status qurban sent",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/statuspesertaqurbansent?year_hijriah=1442&is_qurban_sent=true",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statuspesertaqurbansent"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						},
+						{
+							"key": "is_qurban_sent",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://e-dkm-al-irfan.herokuapp.com/api/statuspesertaqurbansent?is_qurban_sent=false&year_hijriah=1442&location=",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://e-dkm-al-irfan.herokuapp.com/api/statuspesertaqurbansent?is_qurban_sent=false&year_hijriah=1442&location=",
+					"protocol": "https",
+					"host": [
+						"e-dkm-al-irfan",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"statuspesertaqurbansent"
+					],
+					"query": [
+						{
+							"key": "is_qurban_sent",
+							"value": "false"
+						},
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						},
+						{
+							"key": "location",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get status peserta celengan",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/statuspesertacelenganmoneyboxsent?year_hijriah=1444&is_money_box_sent=false",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statuspesertacelenganmoneyboxsent"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1444"
+						},
+						{
+							"key": "is_money_box_sent",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get status peserta qurban",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/statuspesertaqurban?id_peserta=181&year_hijriah=1442&",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statuspesertaqurban"
+					],
+					"query": [
+						{
+							"key": "id_peserta",
+							"value": "181"
+						},
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						},
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get statistic",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/statistic?year_hijriah=1443",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statistic"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1443"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Status Pengumpulan Zakat Fitrah",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/statistic?year_hijriah=1443",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statistic"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1443"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Status penerima zakat fitrah",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/statuspesertazakatfitrahsent?year_hijriah=1443&is_zakat_sent=false",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statuspesertazakatfitrahsent"
+					],
+					"query": [
+						{
+							"key": "year_hijriah",
+							"value": "1443"
+						},
+						{
+							"key": "is_zakat_sent",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get detail pengumpulan zakat fitrah",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount_received\": 9.75,\n  \"id_user\": 1,\n  \"is_zakat_received\": \"true\",\n  \"kulak\": 3,\n  \"notes\": null,\n  \"year_hijriah\": 1443,\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/zakatfitrahreceived/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"zakatfitrahreceived",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get detail pengumpulan zakat fitrah Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/statuszakatfitrahreceived?id_peserta=3&year_hijriah=1443",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statuszakatfitrahreceived"
+					],
+					"query": [
+						{
+							"key": "id_peserta",
+							"value": "3"
+						},
+						{
+							"key": "year_hijriah",
+							"value": "1443"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get detail penerima zakat fitrah",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-APITOKEN",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/statuszakatfitrahsent?id_peserta=3&year_hijriah=1443",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statuszakatfitrahsent"
+					],
+					"query": [
+						{
+							"key": "id_peserta",
+							"value": "3"
+						},
+						{
+							"key": "year_hijriah",
+							"value": "1443"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/statuspesertaqurban?id_peserta=181&year_hijriah=1442& Copy 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/statuspesertaqurban?id_peserta=181&year_hijriah=1442",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statuspesertaqurban"
+					],
+					"query": [
+						{
+							"key": "id_peserta",
+							"value": "181"
+						},
+						{
+							"key": "year_hijriah",
+							"value": "1442"
+						},
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
