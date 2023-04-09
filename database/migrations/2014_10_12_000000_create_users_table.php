@@ -23,10 +23,10 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->enum('role', ['admin', 'panitia'])->nullable();
             $table->text('note')->nullable();
-            $table->string('api_token', 80)->after('password')
-                        ->unique()
-                        ->nullable()
-                        ->default(null);
+            $table->string('api_token', 80)
+                ->unique()
+                ->nullable()
+                ->default(null);
             $table->boolean('status')->nullable()->default(true);
             $table->timestamps();
             $table->softDeletes();
