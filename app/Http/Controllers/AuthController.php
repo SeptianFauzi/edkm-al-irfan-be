@@ -80,7 +80,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $user = User::where('email',$request->email)->orWhere('username', $request->username)->first();
+        $user = User::where('email',$request->emailusername)->orWhere('username', $request->emailusername)->first();
         if($user){
             if(Hash::check($request->password, $user->password)){
                 $status = 'Success';
