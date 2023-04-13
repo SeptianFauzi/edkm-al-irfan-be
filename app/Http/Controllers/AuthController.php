@@ -50,6 +50,7 @@ class AuthController extends Controller
             $data = array(
                 'name' => $request->name,
                 'email' => $request->email,
+                "username" => $request->username,
                 'password' => Hash::make($request->password),
                 'role' => $request->role,
                 'note' => $request->note,
@@ -79,7 +80,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email',$request->email)->orWhere('username', $request->username)->first();
         if($user){
             if(Hash::check($request->password, $user->password)){
                 $status = 'Success';
