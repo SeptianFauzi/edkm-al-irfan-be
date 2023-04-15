@@ -186,6 +186,7 @@ class CelenganController extends Controller
                     'is_money_box_sent' => $request->is_money_box_sent
                 );
             }
+            Log::info("Ini Data",$data);
             $celenganUpdate = Celengan::where('id', $celenganGet->id)->update($data);
             if ($celenganUpdate) {
                 $status = 'Success';
