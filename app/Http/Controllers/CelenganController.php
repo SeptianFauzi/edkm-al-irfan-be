@@ -17,7 +17,9 @@ class CelenganController extends Controller
      */
     public function index(Request $request)
     {
-        $celengan = Celengan::where('year_hijriah', $request->year_hijriah)->with('id_user_service_money:id,name', 'id_user_money_received_users:id,name', 'id_user_money_box_sent_users:id,name', 'id_user_amount_updated_users:id,name', 'id_peserta_peserta:id,name')->orderBy('id_peserta', 'asc')->get();
+        $celengan = Celengan::where('year_hijriah', $request->year_hijriah)->with('id_user_service_money:id,name', 'id_user_money_received_users:id,name', 'id_user_money_box_sent_users:id,name', 'id_user_amount_updated_users:id,name')->with(['id_peserta_peserta' => function ($query) {
+            $query->select('id', 'name')->withTrashed();
+        }])->orderBy('id_peserta', 'asc')->get();
         if ($celengan) {
             $status = 'Success';
             $data = $celengan;

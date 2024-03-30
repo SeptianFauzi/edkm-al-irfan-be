@@ -36,7 +36,8 @@ class AuthController extends Controller
     {
         $validated = Validator::make($request->all(),[
             'name' => 'required|max:255',
-            'email' => 'required|email',
+            'email' => 'email',
+            'username' => 'max:255',
             'password' => 'required',
             'role' => 'required'
         ]);
@@ -57,7 +58,7 @@ class AuthController extends Controller
                 'api_token' => Str::random(60),
 
             );
-            $userSave = User::create($data);
+            $userSave = User::updateOrCreate(['email' => $data['email'], 'username' => $data['username']], $data);
             if($userSave){
                 $status = 'Success';
                 $message = 'Data Saved';
