@@ -18,9 +18,7 @@ class ZakatFitrahReceivedController extends Controller
      */
     public function index(Request $request)
     {
-        $zakatfitrah = ModelZakatFitrah::where('year_hijriah', $request->year_hijriah)->with('id_user_service_zakat:id,name', 'id_user_zakat_received_users:id,name', 'id_user_amount_received_updated_users:id,name')->with(['id_peserta_peserta' => function ($query) {
-            $query->select('id', 'name')->withTrashed();
-        }])->orderBy('id_peserta', 'asc')->get();
+        $zakatfitrah = ModelZakatFitrah::where('year_hijriah', $request->year_hijriah)->with('id_user_service_zakat:id,name', 'id_user_zakat_received_users:id,name', 'id_user_amount_received_updated_users:id,name', 'id_peserta_peserta:id,name')->orderBy('id_peserta', 'asc')->get();
         if ($zakatfitrah) {
             $status = 'Success';
             $data = $zakatfitrah;
