@@ -182,9 +182,7 @@ class CelenganController extends Controller
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
                     'amount' => $request->amount,
-                    'notes' => $request->notes,
-                    'is_money_received' => $request->is_money_received,
-                    'is_money_box_sent' => $request->is_money_box_sent
+                    'notes' => $request->notes
                 );
             }
             $celenganUpdate = Celengan::where('id', $celenganGet->id)->update($data);
