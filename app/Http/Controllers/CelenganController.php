@@ -157,7 +157,7 @@ class CelenganController extends Controller
                     'id_user_amount_updated' => $request->id_user,
                     'date_money_box_sent' => Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s'),
                     'id_user_money_box_sent' => $request->id_user,
-                    'is_money_box_sent' => $request->is_money_received
+                    'is_money_box_sent' => $request->is_money_box_sent
                 );
             } else if ($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount) {
                 $data = array(
