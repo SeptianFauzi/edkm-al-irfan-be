@@ -144,7 +144,7 @@ class CelenganController extends Controller
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 500);
         } else {
             $celenganGet = Celengan::where('id', $id)->where('year_hijriah', $request->year_hijriah)->first();
-            if (($request->is_money_received && $request->is_money_box_sent) && ($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount) && ($celenganGet->is_money_box_sent != $request->is_money_box_sent)) {
+            if ((!is_null($request->is_money_received) && !is_null($request->is_money_box_sent)) && ($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount) && ($celenganGet->is_money_box_sent != $request->is_money_box_sent)) {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
                     'amount' => $request->amount,
@@ -157,7 +157,7 @@ class CelenganController extends Controller
                     'id_user_money_box_sent' => $request->id_user,
                     'is_money_box_sent' => $request->is_money_box_sent
                 );
-            } else if ($request->is_money_received && ($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount)) {
+            } else if (!is_null($request->is_money_received) && ($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount)) {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
                     'amount' => $request->amount,
@@ -167,7 +167,7 @@ class CelenganController extends Controller
                     'is_money_received' => $request->is_money_received,
                     'id_user_amount_updated' => $request->id_user
                 );
-            } else if ($request->is_money_box_sent && ($celenganGet->is_money_box_sent != $request->is_money_box_sent)) {
+            } else if (!is_null($request->is_money_box_sent) && ($celenganGet->is_money_box_sent != $request->is_money_box_sent)) {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
                     'amount' => $request->amount,
@@ -181,8 +181,8 @@ class CelenganController extends Controller
                     'year_hijriah' => $request->year_hijriah,
                     'amount' => $request->amount,
                     'notes' => $request->notes,
-                    'is_money_received' => $request->is_money_received ? $request->is_money_received : strval($celenganGet->is_money_received),
-                    'is_money_box_sent' => $request->is_money_box_sent ? $request->is_money_box_sent : strval($celenganGet->is_money_box_sent)
+                    'is_money_received' => !is_null($request->is_money_received) ? $request->is_money_received : strval($celenganGet->is_money_received),
+                    'is_money_box_sent' => !is_null($request->is_money_box_sent) ? $request->is_money_box_sent : strval($celenganGet->is_money_box_sent)
                 );
             }
             $celenganUpdate = Celengan::where('id', $celenganGet->id)->update($data);
