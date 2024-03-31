@@ -144,7 +144,7 @@ class CelenganController extends Controller
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 500);
         } else {
             $celenganGet = Celengan::where('id', $id)->where('year_hijriah', $request->year_hijriah)->first();
-            if (($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount) && ($celenganGet->is_money_box_sent != $request->is_money_box_sent)) {
+            if (($request->is_money_received && $request->is_money_box_sent) && ($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount) && ($celenganGet->is_money_box_sent != $request->is_money_box_sent)) {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
                     'amount' => $request->amount,
@@ -157,7 +157,7 @@ class CelenganController extends Controller
                     'id_user_money_box_sent' => $request->id_user,
                     'is_money_box_sent' => $request->is_money_box_sent
                 );
-            } else if ($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount) {
+            } else if ($request->is_money_received && ($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount)) {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
                     'amount' => $request->amount,
@@ -167,7 +167,7 @@ class CelenganController extends Controller
                     'is_money_received' => $request->is_money_received,
                     'id_user_amount_updated' => $request->id_user
                 );
-            } else if ($celenganGet->is_money_box_sent != $request->is_money_box_sent) {
+            } else if ($request->is_money_box_sent && ($celenganGet->is_money_box_sent != $request->is_money_box_sent)) {
                 $data = array(
                     'year_hijriah' => $request->year_hijriah,
                     'amount' => $request->amount,
