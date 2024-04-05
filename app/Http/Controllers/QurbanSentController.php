@@ -19,7 +19,9 @@ class QurbanSentController extends Controller
      */
     public function index(Request $request)
     {
-        $qurbansent = ModelQurbanSent::where('year_hijriah', $request->year_hijriah)->with('id_user_service_qurban:id', 'id_user_qurban_sent_users:id,name', 'id_user_amount_sent_updated_users:id,name', 'id_peserta_peserta:id,name,location')->orderBy('id_peserta', 'asc')->get();
+        $qurbansent = ModelQurbanSent::where('year_hijriah', $request->year_hijriah)->with('id_user_service_qurban:id', 'id_user_qurban_sent_users:id,name', 'id_user_amount_sent_updated_users:id,name')->with(['id_peserta_peserta' => function ($query) {
+            $query->select('id', 'name','location')->withTrashed();
+        }])->orderBy('id_peserta', 'asc')->get();
         if ($qurbansent) {
             $status = 'Success';
             $data = $qurbansent;
