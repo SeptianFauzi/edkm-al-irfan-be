@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\ZakatFitrahSent as ModelZakatFitrahSent;
+use App\Model\ZakatFitrahReceived; // Add this import
 use App\ZakatFitrah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -21,6 +22,18 @@ class ZakatFitrahSentController extends Controller
         $zakatfitrah = ModelZakatFitrahSent::where('year_hijriah', $request->year_hijriah)->with('id_user_service_zakat:id', 'id_user_zakat_sent_users:id,name', 'id_user_amount_sent_updated_users:id,name')->with(['id_peserta_peserta' => function ($query) {
             $query->select('id', 'name')->withTrashed();
         }])->orderBy('id_peserta', 'asc')->get();
+        
+        // Add is_zakat_received field to each record
+        foreach ($zakatfitrah as $peserta) {
+            $peserta->is_zakat_received = !is_null(ZakatFitrahReceived::where('id_peserta', $peserta->id_peserta)
+                ->where('year_hijriah', $request->year_hijriah)
+                ->first()) ? 
+                ZakatFitrahReceived::where('id_peserta', $peserta->id_peserta)
+                    ->where('year_hijriah', $request->year_hijriah)
+                    ->first()->is_zakat_received : 
+                false;
+        }
+        
         if ($zakatfitrah) {
             $status = 'Success';
             $data = $zakatfitrah;
