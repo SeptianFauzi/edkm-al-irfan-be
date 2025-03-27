@@ -37,6 +37,8 @@ class StatisticController extends Controller
         $totalPenerimaZakatFitrah = ZakatFitrahSent::where('year_hijriah', $request->year_hijriah)->where('is_zakat_sent', true)->count();
         $totalSisaPenerimaZakatFitrah = ZakatFitrahSent::where('year_hijriah', $request->year_hijriah)->where('is_zakat_sent', false)->count();
         $totalBerasDikumpulkan = ZakatFitrahReceived::where('year_hijriah', $request->year_hijriah)->where('is_zakat_received', true)->sum('amount_received');
+        $totalBerasDiberikan = ZakatFitrahSent::where('year_hijriah', $request->year_hijriah)->where('is_zakat_sent', true)->sum('amount_sent');
+        $totalSisaBerasBelumDiberikan = $totalBerasDikumpulkan - $totalBerasDiberikan;
         // dd($totalDikirimQurban);
         if ($totalPenerimaQurban || $totalSisaQurban || $totalDikirimQurban || $totalPesertaCelengan || $totalDikirimQurban) {
             $status = 'Success';
@@ -57,6 +59,8 @@ class StatisticController extends Controller
                 'total_penerima_zakat_fitrah' => $totalPenerimaZakatFitrah,
                 'total_sisa_penerima_zakat_fitrah' => $totalSisaPenerimaZakatFitrah,
                 'total_beras_dikumpulkan' => $totalBerasDikumpulkan,
+                'total_beras_diberikan' => $totalBerasDiberikan,
+                'total_sisa_beras_belum_diberikan' => $totalSisaBerasBelumDiberikan,
             ];
             $message = 'Success Get Statistic';
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 200);
