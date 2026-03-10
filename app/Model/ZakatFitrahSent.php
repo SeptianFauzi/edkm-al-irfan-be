@@ -9,6 +9,9 @@ class ZakatFitrahSent extends Model
     use SoftDeletes;
     protected $table = 'service_zakat_sent';
     protected $fillable = ['id_user','id_peserta','year_hijriah','amount_sent','notes','is_zakat_sent','id_user_zakat_sent','id_user_amount_sent_updated','date_zakat_sent'];
+    protected $casts = [
+        'id_peserta' => 'string',
+    ];
     /**
      * Get the user that owns the ZakatFitrah
      *

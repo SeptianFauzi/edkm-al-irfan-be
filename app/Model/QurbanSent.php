@@ -10,6 +10,9 @@ class QurbanSent extends Model
     use SoftDeletes;
     protected $table = 'service_qurban_sent';
     protected $fillable = ['id_user', 'id_peserta', 'year_hijriah', 'amount_sent', 'amount_type', 'notes', 'is_qurban_sent', 'id_user_qurban_sent', 'id_user_amount_sent_updated', 'date_qurban_sent'];
+    protected $casts = [
+        'id_peserta' => 'string',
+    ];
     /**
      * Get the user that owns the qurbanFitrah
      *
