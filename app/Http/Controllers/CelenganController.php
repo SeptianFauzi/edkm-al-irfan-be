@@ -190,7 +190,7 @@ class CelenganController extends Controller
             $celenganUpdate = Celengan::where('id', $celenganGet->id)->update($data);
 
             if($request->isForNextYear){
-                $celenganUpdate = Celengan::where('id_peserta', $request->id_peserta)->where("year_hijriah", ($request->year_hijriah)+1)->update(array('is_money_box_sent' => 1));
+                $celenganUpdate = Celengan::where('id_peserta', $request->id_peserta)->where("year_hijriah", (intval($request->year_hijriah))+1)->update(array('is_money_box_sent' => 1));
             }
             if ($celenganUpdate) {
                 $status = 'Success';
