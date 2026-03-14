@@ -145,6 +145,7 @@ class CelenganController extends Controller
             $data = $validated->messages();
             return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 500);
         } else {
+            try {
             $celenganGet = Celengan::where('id', $id)->where('year_hijriah', $request->year_hijriah)->first();
             if ((!is_null($request->is_money_received) && !is_null($request->is_money_box_sent)) && ($celenganGet->is_money_received != $request->is_money_received || $celenganGet->amount != $request->amount) && ($celenganGet->is_money_box_sent != $request->is_money_box_sent)) {
                 $data = array(
@@ -190,14 +191,7 @@ class CelenganController extends Controller
             $celenganUpdate = Celengan::where('id', $celenganGet->id)->update($data);
 
             if($request->isForNextYear){
-                try {
-                    $celenganUpdate = Celengan::where('id_peserta', $request->id_peserta)->where("year_hijriah", (intval($request->year_hijriah))+1)->update(array('is_money_box_sent' => 1));
-                } catch (\Exception $e) {
-                    $status = 'Failed';
-                    $message = 'Data Not Updated';
-                    $data = $data;
-                    return response()->json(['status' => $status, 'message' => $e, 'data' => $data], 500);
-                }
+                $celenganUpdate = Celengan::where('id_peserta', $request->id_peserta)->where("year_hijriah", ($request->year_hijriah)+1)->update(array('is_money_box_sent' => 1));
             }
             if ($celenganUpdate) {
                 $status = 'Success';
@@ -210,8 +204,14 @@ class CelenganController extends Controller
                 $data = $data;
                 return response()->json(['status' => $status, 'message' => $message, 'data' => $data], 500);
             }
+        } catch (\Exception $e) {
+            $status = 'Failed';
+            $message = 'Data Not Updated';
+            $data = $data;
+            return response()->json(['status' => $status, 'message' => $e, 'data' => $data], 500);
         }
     }
+}
 
     /**
      * Remove the specified resource from storage.
